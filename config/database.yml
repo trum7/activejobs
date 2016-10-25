@@ -19,7 +19,6 @@ development:
 
 test:
   <<: *default
-  url: <%= ENV['DB_URL'] %>
   host: <%= ENV['POSTGRE_HOST'] %>
   database: <%= ENV['DB_USER'] %>
   username: <%= ENV['DB_USER'] %>
@@ -27,7 +26,6 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DB_URL'] %>
   host: <%= ENV['POSTGRE_HOST'] %>
   database: <%= ENV['DB_USER'] %>
   username: <%= ENV['DB_USER'] %>
