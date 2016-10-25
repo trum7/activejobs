@@ -1,0 +1,161 @@
+<div class="bg">
+
+      <div class="container">
+        <div id="home" class="header wow bounceInDown" data-wow-delay="0.4s">
+    		  <div class="top-header">
+            <div class="logo">
+              <%= link_to 'Wayuu', '#' %>
+    				</div>
+    				<nav class="top-nav">
+    				  <ul class="top-nav">
+    					  <li><%= link_to( 'web page', 'hometeam#index', class:'scroll' ) %></li>
+                <li><%= link_to( 'about', '#about', class:'scroll' ) %></li>
+    						<li><%= link_to( 'process', '#process', class:'scroll' ) %></li>
+                <li class="page-scroll"><%= link_to( 'contact', '#contact', class:'scroll' ) %></li>
+                <li class="active-join" class="page-scroll"><%= link_to( 'join us', '#team', class:'scroll' ) %></li>
+    					</ul>
+    					<a href="#" id="pull"><%= image_tag('team_page/nav-icon.png', title: 'menu')%></a>
+    				</nav>
+    				<div class="clearfix"> </div>
+    			</div>
+    		</div>
+    	</div>
+
+      <div class="banner-info">
+    	  <div class="container">
+    		  <h1 class="wow fadeIn" data-wow-delay="0.5s"><span>we are</span><br /><label>development team</label></h1>
+    		</div>
+    	</div>
+
+    	<div class="clearfix"> </div>
+
+    </div>
+
+    <div id="about" class="about">
+      <div class="head-section">
+    	  <div class="container">
+    		  <h3><span>about</span><label>team.</label></h3>
+    		</div>
+    	</div>
+
+    	<div class="about-grids">
+    	  <div class="col-md-4 about-grid about-grid1 wow fadeInLeft" data-wow-delay="0.4s">
+    		  <div class="about-grid-info">
+    			  <h4><a>who we are...</a></h4>
+    				<p>A small junior development team of system engineer students of
+    				   on the development of an e commerce guided by professor Aponte
+    					 tie national university of Colombia has the opportunity to work
+    					 and tutors
+    				</p>
+    			</div>
+    			<div class="about-grid-pic">
+    			  <%= image_tag('team_page/about-pic1.jpg', title:'name')%>
+    			</div>
+    		</div>
+    		<div class="col-md-4 about-grid about-grid2 wow fadeInUp" data-wow-delay="0.4s">
+    		  <div class="about-grid-pic">
+    			  <%= image_tag('team_page/about-pic2.jpg', title:'name')%>
+    			</div>
+    			<div class="about-grid-info">
+    			  <h4><a>work methodology</a></h4>
+    				<p>Scrum is an agile methodology that allows iterative collaborative work.
+    				   Its development is incremental with easy adoption of new requirements
+    					 that enable functional software soon</p>
+    			</div>
+    		</div>
+    		<div class="col-md-4 about-grid about-grid1 wow fadeInRight" data-wow-delay="0.4s">
+    		  <div class="about-grid-info">
+    			  <h4><a>Sprints</a></h4>
+    				<p>The iteration will be 2 weeks long, during which the team will develop
+    					 and attend new requirements and requests. To fulfill  this, the team
+    					 will keep a constant communication channel with the product owner</p>
+    			</div>
+    			<div class="about-grid-pic">
+    			  <%= image_tag('team_page/about-pic3.jpg', title:'name')%>
+    			</div>
+    		</div>
+    		<div class="clearfix"> </div>
+    	</div>
+    </div>
+
+    <div id="process" class="process">
+      <div class="head-section">
+    	  <div class="container">
+    		  <h3><span>Our</span><label>process .</label></h3>
+    		</div>
+    	</div>
+    	<div class="container">
+    	  <div class="process-grids text-center wow bounce" data-wow-delay="0.4s">
+    		  <div class="col-md-3 process-grid process-grid1 wow bounceInUp" data-wow-delay="0.4s">
+    			  <span class="p-icon1"> </span>
+    				<h4><a>Define</a></h4>
+    			</div>
+    			<div class="col-md-3 process-grid process-grid2 wow bounceInDown" data-wow-delay="0.4s">
+    			  <span class="p-icon3"> </span>
+    				<h4><a>Develop</a></h4>
+    			</div>
+    			<div class="col-md-3 process-grid process-grid3 wow bounceInUp" data-wow-delay="0.4s">
+    			  <span class="p-icon2"> </span>
+    				<h4><a>Test</a></h4>
+    			</div>
+    			<div class="col-md-3 process-grid process-grid4 wow bounceInDown" data-wow-delay="0.4s">
+    			  <span class="p-icon4"> </span>
+    				<h4><a>Review</a></h4>
+    			</div>
+    			<div class="clearfix"> </div>
+    		</div>
+    	</div>
+    </div>
+
+    <div class="work-with-us text-center">
+      <div class="container">
+    	  <h4>YOU ALSO WANT? WORK WITH US!</h4>
+    		<p>Send the application form for a free call and our manager will contact with you</p>
+        <%= link_to( 'contact us', '#contact', class:'catch-me wow shake scroll', delay:'0.3s' ) %>
+    	</div>
+    </div>
+
+    <div id="team" class="team">
+      <div class="head-section">
+    	  <div class="container">
+    		  <h3><span>our amazing</span><label>team .</label></h3>
+    		</div>
+    	</div>
+
+    	<div class="sreen-gallery-cursual">
+        <div id="owl-demo" class="owl-carousel text-center">
+    		  <div class="item wow zoomIn" data-wow-delay="0.3s">
+            <%= image_tag( 'team_page/team-member1.png', clase:'lazyOwl', alt:'name' ) %>
+    				<h5><span>Daniel</span> Navas</h5>
+    				<label>Developer</label>
+    			</div>
+    			<div class="item wow zoomIn" data-wow-delay="0.3s">
+    			  <%= image_tag( 'team_page/team-member2.png', clase:'lazyOwl', alt:'name' ) %>
+    				<h5><span>Cristian</span> Orjuela</h5>
+    				<label>Developer</label>
+    			</div>
+    			<div class="item wow zoomIn" data-wow-delay="0.3s">
+    			  <%= image_tag( 'team_page/team-member3.png', clase:'lazyOwl', alt:'name' ) %>
+    				<h5><span>Laura</span> Ceron</h5>
+    				<label>Scrum master</label>
+    			</div>
+    			<div class="item wow zoomIn" data-wow-delay="0.3s">
+    			  <%= image_tag( 'team_page/team-member4.png', clase:'lazyOwl', alt:'name' ) %>
+    				<h5><span>Camilo</span> Dajer</h5>
+    				<label>Developer</label>
+    			</div>
+    			<div class="item wow zoomIn" data-wow-delay="0.3s">
+    			  <%= image_tag( 'team_page/team-member5.png', clase:'lazyOwl', alt:'name' ) %>
+    				<h5><span>Sebastian</span> Moreno</h5>
+    				<label>Developer</label>
+    		  </div>
+    		</div>
+    	</div>
+    </div>
+
+    <div id="contact" class="pichuria">
+      <h4><label>Wayuu</label> development team</h4>
+      <p>Carrera 45, Bogota-Colombia</p>
+      <p>wayuuteam@gmail.com</p>
+      <p>+057-310-557-2389</p>
+    </div>

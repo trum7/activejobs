@@ -1,0 +1,56 @@
+
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>Categories </h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><%= link_to "HOME", root_path%>
+                    </li>
+                    <li>Categories</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+  <!-- <div class="container" >
+    <div class="row">
+        <div class="col-sm-2">
+          <div class="heading">
+            <h5>Filter by: </h5>
+          </div>
+        </div>
+        <div class="col-sm-10">
+            <ul class="list-inline">
+              <li> -->
+                <!-- <div>
+    							<button class="btn btn-link dropdown-toggle" id="catFilters" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    								Price Range <span class="caret"></span>
+    							</button>
+    							<ul class="dropdown-menu">
+    								<li> -->
+                <!-- <div>
+    								<input id="price-filter" name="price" type="text" class="span2" value="" data-slider-min="7" data-slider-max="224" data-slider-step="5" data-slider-value="[7,224]"/>
+    								<br>
+    								<span id="CurrentSliderValLabel">Price: <span id="SliderVal">$7 - $224</span></span>
+                    <button id="prange" class="btn btn-default btn-xs btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
+                </div>
+              </li>
+              <li><button id="prange" class="btn btn-link" id="catFilters"><i class="fa fa-pencil"></i>Sort by newness</button></li>
+              <li><button id="prange" class="btn btn-link" id="catFilters"><i class="fa fa-pencil"></i>Sort by price: low to high</button></li>
+              <li><button id="prange" class="btn btn-link" id="catFilters"><i class="fa fa-pencil"></i>Sort by price: high to low</button></li>
+          </ul>
+        </div>
+    </div>
+  </div> -->
+  <div class="container" id="container-categories">
+    <%= render 'category/showcategories' %>
+  </div>
+    <!-- /.container -->
+</div>
+    <!-- /#content -->

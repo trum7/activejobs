@@ -1,0 +1,55 @@
+<div id="addedsuccess"></div>
+<div class="row products">
+	<% @pricesort.each do |c| %>
+	<div class="col-md-4 col-sm-6">
+		<div class="product">
+			<div>
+				<div class="box-image custom-box-image">
+					<div class="image" id= "pimage">
+						<a href="<%=product_path( c.id ) %>">
+							<%product_image = ProductImage.find_by(product_id: c.id.to_s )%>
+							<%if product_image.nil?%>
+							<!--img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" alt="" class="img-responsive image1"-->
+							<%= image_tag("shop/no-preview.jpg", class: "img-responsive image1") %>
+							<%else%>
+							<img src="<%=product_image.image.url%>" class="img-responsive">
+							<%end%>
+						</a>
+					</div>
+					<div class="text custom-text-add-to-cart">
+						<a href="<%= addtocartget_path( :id => c.id ) %>" data-remote="true" class="btn btn-template-main" id="addedtocartbutton"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					</div>
+				</div>
+				<% if c.discount != 0.0%>
+				<div class="ribbon sale">
+					<div class="theribbon">SALE</div>
+					<div class="ribbon-background"></div>
+				</div>
+				<%end%>
+				<% if c.created_at > 10.days.ago %>
+				<div class="ribbon new">
+					<div class="theribbon">NEW</div>
+					<div class="ribbon-background"></div>
+				</div>
+				<% end %>
+			</div>
+			<div class="text">
+				<h3><%=c.name%></h3>
+				<% if c.discount != 0.0%>
+				<p class="price">$<%= c.price %><del>$<%= c.discount %></del></p>
+				<%else%>
+				<p class="price">$<%=c.price%></p>
+				<%end%>
+              <!-- <p style="margin-top:15px;">
+                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            </p> -->
+        </div>
+    </div>
+</div>
+<%end%>
+</div>
+<div class="col-sm-12">
+	<div class="center">
+		<%= will_paginate @pricesort, renderer: BootstrapPagination::Rails, inner_window: 1, outer_window: 1,previous_label: "«" , next_label: "»"%>
+	</div>
+</div>

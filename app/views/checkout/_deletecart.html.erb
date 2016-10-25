@@ -1,0 +1,104 @@
+<div class="container">
+   <div class="row">
+       <div class="col-md-9 clearfix" id="checkout">
+           <div class="box">
+             <div class="content" id="tbContent">
+                 <div class="table-responsive">
+                     <table class="table" id= "tbCart">
+                         <thead>
+                             <tr>
+                                 <th colspan="2">Product</th>
+                                 <th> </th>
+                                 <th>Quantity</th>
+                                 <th>Unit price</th>
+                                 <th>Discount</th>
+                                 <th colspan="2">Total</th>
+                                 <th><th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                           <% @productcart.each do |i| %>
+                             <tr>
+                                 <td>
+                                   <% showImage = ProductImage.find_by(product_id: i.id.to_s ) %>
+                                   <% unless showImage.nil?%>
+                                     <td><%=image_tag showImage.image.thumb.url%></td>
+                                   <%else%>
+                                     <td>No image</td>
+                                   <%end%>
+                                 </td>
+                                 <td><a href="<%= product_path(i.id) %>"><%= i.name %></a>
+                                 </td>
+                                 <td> <select value="<%= i.quantity %>" id="squantity">
+                                   <% for a in (1..Product.find( i.id ).quantity) %>
+                                       <option value="<%=a%>"><%=a%></option>
+                                   <% end %>
+                                 </select></td>
+                                 <td><%= i.price %></td>
+                                 <td><%= i.discount %></td>
+                                 <%if i.discount !=0.0%>
+                                   <td>$<%= (i.price.to_d - i.discount.to_d) * i.quantity %></td>
+                                 <%else%>
+                                   <td>$<%= i.price.to_d * i.quantity %></td>
+                                 <%end%>
+                                 <td><%= link_to '', deletecart_checkout_index_path( :id => i.id ),:title =>"Delete item" ,:id=> "deleteItem", :class=>"btn fa fa-trash-o", remote: true %></td>
+                             </tr>
+                          <% end %>
+                         </tbody>
+                         <tfoot>
+                             <tr>
+                                 <th colspan="6">Total</th>
+                                 <%session[:sum] = total()%>
+                                 <th>$<%= session[:sum]%></th>
+                             </tr>
+                         </tfoot>
+                     </table>
+                 </div>
+                 <!-- /.table-responsive -->
+             </div>
+             <!-- /.content -->
+             <div class="box-footer">
+                 <div class="pull-right">
+                     <a href="<%= checkout_index_path %>" class="btn btn-template-main">Checkout<i class="fa fa-chevron-right"></i>
+                     </a>
+                 </div>
+             </div>
+           </div>
+           <!-- /.box -->
+       </div>
+       <!-- /.col-md-9 -->
+       <div class="col-md-3">
+           <div class="box" id="order-summary">
+               <div class="box-header">
+                   <h3>Order summary</h3>
+               </div>
+               <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+               <div class="table-responsive">
+                   <table class="table">
+                       <tbody>
+                           <tr>
+                               <td>Order subtotal</td>
+                               <th>$<%= session[:sum]%></th>
+                           </tr>
+                           <tr>
+                               <td>Shipping and handling</td>
+                               <th>$0.00</th>
+                           </tr>
+                           <tr>
+                               <td>Tax</td>
+                               <th>$0.00</th>
+                           </tr>
+                           <tr class="total">
+                               <td>Total</td>
+                               <th>$<%= session[:sum]%></th>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+       <!-- /.col-md-3 -->
+   </div>
+   <!-- /.row -->
+</div>
+ <!--/.container  -->

@@ -1,0 +1,53 @@
+
+
+ <div id="page-wrapper" style="background-color: #FFFFFF; margin-top: 15px">
+
+<div class="container-fluid">
+
+    <div class="pull-right">
+      <a href="/admin/index" data-toggle="tooltip" title="Cancel" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>Latest reviews</h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i>Reviews</h3>
+      </div>
+      <div class="panel-body">
+        <div class="tab-pane" id="tab-discount">
+          <div class="table-responsive">
+            <table id="discount" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <td class="text-left">Product</td>
+                  <td class="text-left">Review</td>
+                  <td class="text-left">Rating</td>
+                  <td class="text-left">Email</td>
+                  <td class="text-left">Created at</td>
+                  <td class="text-left">Action</td>
+                </tr>
+              </thead>
+              <tbody>
+                <% @latest.each do |t| %>
+                <tr>
+                  <td><%= Product.find(t.product_id).name %></td>
+                  <td><%= truncate(t.comment, :length => 70) %></td>
+                  <td><%= t.rating %></td>
+                  <td><%= t.email %></td>
+                  <td><%= t.created_at %></td>
+                  <td><!-- <a href="/category/edit/<%= t.id %>" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>-->
+                  <%= link_to '', see_review_index_path( :id => t.id ), :class=>"btn btn-default fa fa-search", remote: true %>
+                  <br>
+                  <%= link_to '', delete_review_index_path( :id => t.id ), :class=>"btn btn-danger fa fa-times", remote: true %>
+                  <!-- <a href="/category/status/<%= t.id %>" data-toggle="tooltip" title="Active / Disable" class="btn btn-default"><i class="fa fa-eye"></i></a></td>
+                  <a href="/admin/index" data-toggle="tooltip" title="Active / Disable" class="btn btn-default"><i class="fa fa-eye"></i></a></div></td> -->
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

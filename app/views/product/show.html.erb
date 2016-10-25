@@ -1,0 +1,327 @@
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1><%= @product.name %></h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li><%= link_to "HOME", root_path%></li>
+                    </li>
+                    <li><a><%= Category.find( (((CategoryHasProduct.find_by( product_id: @product.id.to_s  )).category_id).to_s) ).name %></a>
+                    </li>
+                    <li><%= @product.name %></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- *** LEFT COLUMN ***
+_________________________________________________________ -->
+
+            <div class="col-md-9">
+
+
+                <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll to product details, material & care and sizing</a>
+                </p>
+
+                <div class="row" id="productMain">
+                    <div class="col-sm-6">
+                        <% showImage = ProductImage.where(product_id: @product.id.to_s ).order('sort_order DESC') %>
+                        <div id="mainImage">
+                            <% unless showImage[0].nil?%>
+                              <img src="<%=showImage[0].image.url%>" class="img-responsive" height="450" width="450">
+                              <!-- <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" class="img-responsive" height="450" width="450"> -->
+                            <%else%>
+                              <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" class="img-responsive" height="450" width="450">
+                            <%end %>
+                        </div>
+
+                        <% if @product.discount != 0.0 %>
+                        <div class="ribbon sale">
+                          <div class="theribbon">SALE</div>
+                          <div class="ribbon-background"></div>
+                        </div>
+                        <% end %>
+                                <!-- /.ribbon -->
+                        <% if @product.created_at > 3.days.ago %>
+
+                        <div class="ribbon new">
+                          <div class="theribbon">NEW</div>
+                          <div class="ribbon-background"></div>
+                        </div>
+                        <% end %>
+                        <br><br>
+                        <p class="lead"  align="justify"><%= @product.description %>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box">
+
+                          <div class="stock" align="center">
+                            <% if @product.quantity > 0 %>
+                              <h3>Available</h3>
+                            <% else %>
+                              <h3>Not available</h3>
+                            <% end %>
+                          </div>
+                            <% if @product.discount != 0.0 %>
+                              <strike><p class="price" style="margin-bottom: 1px">$<%= @product.price %></p></strike>
+                              <p class="price" style="margin-top: 1px">$<%= @product.price.to_d - @product.discount.to_i %></p>
+                              <p class="text-center">
+                            <% else %>
+                              <p class="price">$<%= @product.price %></p>
+                              <p class="text-center">
+                            <%end %>
+                            <% if @product.quantity > 0 %>
+                              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                              <button id="addcart" value="<%= @product.id %>" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart </button>
+                              <a href="<%= addtowishlist_path( :id => @product.id ) %>" data-remote="true" class="btn btn-template-main" id="addedtowishlist"><i class="fa fa-heart-o"></i></a>
+                            <% else %>
+                              <button type="submit" class="btn btn-template-main" disabled><i class="fa fa-shopping-cart"></i> Add to cart </button>
+                              <a href="<%= addtowishlist_path( :id => c.id ) %>" data-remote="true" class="btn btn-template-main" id="addedtowishlist" disabled><i class="fa fa-heart-o"></i></a>
+                            <% end %>
+                            </p>
+                        </div>
+
+                        <div class="row" id="thumbs">
+                                <% unless showImage.nil?%>
+                                  <% showImage.each do |x| %>
+                                    <div class="col-xs-4">
+                                      <a href="<%=x.image.url%>" class="img-responsive image1">
+                                        <%=image_tag x.image.small.url%>
+                                        <!-- <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" class="img-responsive" height="450" width="450"> -->
+                                      </a>
+                                    </div>
+                                  <%end%>
+                                <%else%>
+                                  <div class="col-xs-4">
+                                    <a href="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" class="thumb">
+                                        <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" alt="" class="img-responsive">
+                                    </a>
+                                  </div>
+                                <%end%>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div> <hr> </div>
+
+                <div class="box" id="details" align="left">
+                    <p>
+                        <h4 align="center">Product details</h4>
+                        <!-- <p>WEIGHT: <%# @product.weight %> </p> -->
+
+                        <div class="row">
+                          <%= image_tag("shop/description.jpg", class: "img-responsive margin-auto") %>
+                        </div>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-pencil"></i>Reviews</h3>
+                  </div>
+                  <div class="panel-body" style="margin-top: 20px">
+                    <form action="<%= review_index_path %>" method="get" id="form-review" class="form-horizontal">
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                      <%= hidden_field_tag :product, @product.id %>
+                      <ul class="nav nav-tabs">
+                        <li class="active" id="general"><a href="#tab-data" data-toggle="tab">Reviews</a></li>
+                        <li id="create"><a href="#tab-create" data-toggle="tab">Write reviews</a></li>
+                      </ul>
+
+                      <div class="tab-content" style="margin-top: 15px">
+                        <div class="tab-pane active" id="tab-data">
+                          <div class="well">
+                            <% @comments.each do |t| %>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                    <% for i in (0..(t.rating.to_i-1)) %>
+                                      <span class="glyphicon glyphicon-star"></span>
+                                    <% end %>
+                                    <% for i in (1..(5-t.rating.to_i)) %>
+                                      <span class="glyphicon glyphicon-star-empty"></span>
+                                    <% end %>
+                                      <%= t.name %>
+                                      <span class="pull-right"><%= time_ago_in_words( t.created_at ) + " ago" %></span>
+                                      <p><%= t.comment %></p>
+                                  </div>
+                              </div>
+
+                              <hr>
+                          <% end %>
+
+
+
+
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab-create">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-name">Name</label>
+                              <div class="col-sm-10">
+                                <input type="text" name="name" value="" placeholder="Name" id="name" class="form-control" />
+                              </div>
+                              <br><br>
+                              <label class="col-sm-2 control-label" for="input-name">Email</label>
+                              <div class="col-sm-10">
+                                <input type="text" name="email" value="" placeholder="Email" id="email" class="form-control" />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-description1">Description</label>
+                              <div class="col-sm-10">
+                                <textarea name="comment" placeholder="Description" style="min-width: 100%" id="description"></textarea>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" for="input-description1">Rating</label>
+                              <div class="col-sm-10">
+                                <div class="col-sm-5">
+                                <input name="star2" type="radio" value="1" class="star"/>
+                                <input name="star2" type="radio" value="2" class="star"/>
+                                <input name="star2" type="radio" value="3" class="star" checked="checked"/>
+                                <input name="star2" type="radio" value="4" class="star"/>
+                                <input name="star2" type="radio" value="5" class="star"/>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-12" align="right">
+                              <button data-toggle="tooltip" title="Save" form="form-review" id="addComment" class="btn btn-primary" style="width: 150px; height: 50px;">Enviar</button>
+                            </div>
+
+                          </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="box social" id="product-social">
+                    <h4>Show it to your friends</h4>
+                    <p>
+                        <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                    </p>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box text-uppercase">
+                            <h3>Related Products</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg" alt="" class="img-responsive image1">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Fur coat</h3>
+                                <p class="price">$143</p>
+
+                            </div>
+                        </div>
+                        <!-- /.product -->
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg" alt="" class="img-responsive image1">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Fur coat</h3>
+                                <p class="price">$143</p>
+                            </div>
+                        </div>
+                        <!-- /.product -->
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg" alt="" class="img-responsive image1">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Fur coat</h3>
+                                <p class="price">$143</p>
+                            </div>
+                        </div>
+                        <!-- /.product -->
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!-- /.col-md-9 -->
+
+
+            <!-- *** LEFT COLUMN END *** -->
+
+            <!-- *** RIGHT COLUMN ***
+_________________________________________________________ -->
+
+            <div class="col-sm-3">
+
+                <!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+                <div class="panel panel-default sidebar-menu">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Categories</h3>
+                    </div>
+
+                    <div class="panel-body">
+                      <% @cate.each do |t| %>
+                        <ul class="nav nav-pills nav-stacked category-menu">
+                          <div>
+                            <li > <a href="<%= showall_category_product_index_path( t.id ) %>"><%= t.name %></a>
+                            </li>
+                          </div>
+
+                        </ul>
+                      <% end %>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!-- /.col-md-3 -->
+
+            <!-- *** RIGHT COLUMN END *** -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>

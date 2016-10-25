@@ -1,0 +1,5 @@
+$( "#indexcambio" ).html( "<%= escape_javascript( render( "listproduct" ) ) %>" );
+$(document).on("click"," #pagProducts .pagination a", function(){
+    $.getScript(this.href);
+    return false;
+});

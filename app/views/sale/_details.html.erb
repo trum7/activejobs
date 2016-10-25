@@ -1,0 +1,282 @@
+
+ <div id="page-wrapper" style="background-color: #FFFFFF; margin-top: 15px">
+
+<div class="container-fluid">
+
+    <div class="pull-right">
+
+      <button title="Saveimage" id="saveimage" class="btn btn-primary hidden"><i class="fa fa-save"></i></button>
+      <a href="/admin/index" id="finishadd" title="Finish" class="btn btn-primary hidden"><i class="fa fa-check"></i></a>
+      <a href="/admin/index" data-toggle="tooltip" title="Cancel" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>Order <%= @detailorder.id %></h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i>Check order</h3>
+      </div>
+      <div class="panel-body" style="margin-top: 20px">
+        <form action="/product/new" method="post" enctype="multipart/form-data" id="form-product" class="form-horizontal">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <ul class="nav nav-tabs">
+            <li class="active" id="general"><a href="#tab-data" data-toggle="tab">General</a></li>
+            <li id="delivery"><a href="#tab-delivery" data-toggle="tab">Delivery address</a></li>
+            <li id="billing"><a href="#tab-billing" data-toggle="tab">Billing</a></li>
+          </ul>
+
+          <div class="tab-content" style="margin-top: 15px">
+            <div class="tab-pane active" id="tab-data">
+              <div class="form-group required">
+                <div align="center">
+                  <label for="input-name">Products</label>
+                </div>
+                <div class="col-sm-12">
+                  <div class="table-responsive">
+                    <table id="discount" class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+
+                          <td class="text-left">Name</td>
+                          <td class="text-left">Quantity</td>
+                          <td class="text-left">Price</td>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <% @productsorder.each do |x| %>
+                        <tr>
+                              <td><%= x.name %></td>
+                              <td><%= x.quantity %></td>
+                              <td>$<%= x.price %></td>
+
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-4" align="center">
+                <%= link_to ' Processing', changeprocessing_sale_index_path( :id => @detailorder.id ), :class=>"btn btn-primary fa fa-check", remote: true %>
+              </div>
+              <div class="col-sm-4" align="center">
+                <%= link_to ' Complete', changecompleted_sale_index_path( :id => @detailorder.id ), :class=>"btn btn-success fa fa-check-square", remote: true %>
+              </div>
+              <div class="col-sm-4" align="center">
+                <%= link_to ' Cancel', changecanceled_sale_index_path( :id => @detailorder.id ), :class=>"btn btn-danger fa fa-times", remote: true %>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-delivery">
+              <div class="form-group">
+
+                <div class="col-sm-12">
+
+                  <div class="span8">
+                      <h3>Delivery information</h3>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Firstname:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliverycustomer.firstname %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Lastname:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliverycustomer.lastname %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Email:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliverycustomer.email %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Telephone:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliverycustomer.telephone %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+
+                      <h3>Address</h3>
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Street:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliveryaddress.address %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Country:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= Country.find( @deliveryaddress.country_id ).name %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">City:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliveryaddress.city %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">State:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliveryaddress.state %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+                      <div class="col-sm-2" align="right">
+                      <label class="control-label">Zip:</label>
+                      </div>
+                      <div class="col-sm-10">
+                          <p  class="form-control"><%= @deliveryaddress.zip %></p>
+                          <p class="help-block"></p>
+                      </div>
+
+
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-billing">
+              <div class="form-group">
+
+
+                  <div class="col-sm-12">
+
+                    <div class="span8">
+                        <h3>Billing information</h3>
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Braintree ID:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @transaction.braintreeid %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Amount:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @transaction.amount %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Braintree Status</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= Braintree::Transaction.find(@transaction.braintreeid).status %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+
+
+
+                        <h3>Contact</h3>
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Firstname:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingcustomer.firstname %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Lastname:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingcustomer.lastname %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Email:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingcustomer.email %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Telephone:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingcustomer.telephone %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+
+                        <h3>Address</h3>
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Street:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingaddress.address %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Country:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= Country.find( @billingaddress.country_id ).name %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">City:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingaddress.city %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">State:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingaddress.state %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="col-sm-2" align="right">
+                        <label class="control-label">Zip:</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p  class="form-control"><%= @billingaddress.zip %></p>
+                            <p class="help-block"></p>
+                        </div>
+
+
+
+                    </div>
+
+                  </div>
+
+
+              </div>
+            </div>
+
+            </form>
+          </div>
+        </div>
+    </div>

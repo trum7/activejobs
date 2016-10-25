@@ -1,0 +1,27 @@
+<div align="center">
+<div class="card card-container">
+<h2 class="fonts">Forgot your password?</h2></br>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <div class="inputEmail">
+    <h3 class="fonts">Email</h3>
+    <% f.label :email %><br />
+    <%= f.email_field :email, :align=>"center", :id=>"inputEmail", autofocus: true %></br>
+  </div>
+</div>
+
+  </br>
+
+    <div align="center">
+    <%= f.submit "Send me reset password instructions", :font=>"Times New Roman", :class=>"btn1"%></br>
+  </div>
+<% end %>
+
+<div class="fonts1">
+<%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

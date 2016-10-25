@@ -1,0 +1,13 @@
+
+
+$('#user_star').raty({
+  score: 2,
+  path: '<%= image_tag("shop/star-off.png", class: "img-responsive margin-auto") %>',
+  click: function(score, evt) {
+    $.ajax({
+      url: '/admin',
+      type: 'PATCH',
+      data: { score: score }
+    });
+  }
+});

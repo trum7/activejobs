@@ -1,0 +1,2 @@
+module HometeamHelper
+end

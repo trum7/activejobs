@@ -1,0 +1,15 @@
+
+<li class="pull-right"><button id="refresh" class="btn btn-template-main"><i class="fa fa-refresh fa-lg"></i>Update</button></button></li>
+<br><br>
+  <% @productcart.each do |a| %>
+    <li>
+        <pre><strong><%= a.name %>: $<%= a.price %> </strong></pre>
+        <button data-toggle="tooltip" title="Delete" id="delete" name=<%= a.id %> class="btn btn-primary"><i class="fa fa-trash"></i></button>
+        <%= link_to '', deletecart_path( :id => a.id ), :class=>"btn btn-default fa fa-pencil", remote: true %>
+    </li>
+  <% end %>
+    <li>
+        <a class="text-center" href="#">
+            <button type="submit" class="btn btn-template-main" disabled><i class="fa fa-shopping-cart"></i>Go to cart</button>
+        </a>
+    </li>

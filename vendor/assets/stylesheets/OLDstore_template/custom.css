@@ -1,0 +1,148 @@
+.container {
+    position: relative;
+}
+
+.cd-header-buttons {
+    top: 14px;
+    right: 17%;
+}
+
+.cd-search {
+    top: 119%;
+}
+
+.core-slider_item img {
+    width: 100%;
+}
+
+.top-left a {
+    color: #5e5e5e;
+}
+
+.header-top {
+    background: #ddd;
+}
+
+.top-right ul li a {
+    color: #5e5e5e;
+}
+
+.heder-bottom {
+    background: #fff;
+}
+
+.logo-nav-left1 ul li.active a.act {
+    color: #808080 !important;
+}
+
+.navbar-default .navbar-nav> li> a {
+    color: #808080;
+}
+
+.nav> li> a:hover,
+.nav> li> a:focus {
+    color: #e25fa3 !important;
+}
+
+.cd-search-trigger::before {
+    border: 3px solid #808080;
+}
+
+.cd-search-trigger::after {
+    background: #808080;
+}
+
+.cd-search-trigger span::before,
+.cd-search-trigger span::after {
+    background: #808080;
+}
+
+.box_1 h3 {
+    color: #808080;
+}
+
+a.simpleCart_empty {
+    color: #808080;
+}
+
+.brand-logo {
+    height: 74px;
+}
+
+.core-slider_arrow__right {
+    background-color: #222 !important;
+}
+
+.core-slider__carousel .core-slider_arrow__left {
+    background-color: #222 !important;
+}
+
+.footer-w3l {
+    background: #272727;
+}
+
+.footer-grid p {
+    color: #939393;
+}
+
+.footer-grid ul li a {
+    color: #939393;
+}
+
+.footer-grid ul li a:hover {
+    color: #e25fa3;
+}
+
+.footer-grid i {
+    border: 1px solid #75D0F3;
+}
+
+.social-icon a i {
+    background: #e25fa3 url(../images/img-sprite.png) no-repeat 0px 0px;
+}
+
+.social-icon i.icon:hover {
+    background: #F4EA1E url(../images/img-sprite.png) no-repeat 0px 0px;
+}
+
+.social-icon i.icon1:hover {
+    background: #F4EA1E url(../images/img-sprite.png) no-repeat -32px 0px;
+}
+
+.social-icon i.icon2:hover {
+    background: #F4EA1E url(../images/img-sprite.png) no-repeat -64px 0px;
+}
+
+.social-icon i.icon3:hover {
+    background: #F4EA1E url(../images/img-sprite.png) no-repeat -96px 0px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-3 {
+        width: 100%;
+    }
+}
+
+.dropdown-menu.columns-3 {
+    min-width: 236px;
+}
+
+.multi-column-dropdown li a {
+    color: #808080 !important;
+}
+
+.section {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.p-title {
+    color: #303030;
+    text-align: center;
+}
+
+.p-text {
+    color: #303030;
+    font-size: 16px;
+    text-align: center;
+}

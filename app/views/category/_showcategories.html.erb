@@ -1,0 +1,48 @@
+<div class="row products">
+  <% @show_category.each do |c|%>
+    <div class="col-md-3 col-sm-4">
+        <div class="product">
+            <div class="image" id="pimage">
+                <a href="<%=showall_category_product_index_path(c.id)%>">
+                    <%image = find_image(c.id)%>
+                    <%unless image.nil?%>
+                     <img src="<%= image.image.url%>" alt="" class="img-responsive">
+                       <!-- <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" alt="" class="img-responsive image1"> -->
+                    <%else%>
+                      <img src="http://c9a023018b7727eeeae9-5cb13b2b77b05284d2f5230b4c21c288.r0.cf1.rackcdn.com/uploads/nopreview.png" alt="" class="img-responsive image1">
+                    <%end%>
+                </a>
+            </div>
+            <!-- /.image -->
+            <div class="text">
+                <h3><%=c.name%></h3>
+                <p class="price">In stock:  <%=  category_stock(c.id.to_s)  %></p>
+            </div>
+            <!-- /.text -->
+            <%p = find_discount(c.id.to_s)%>
+            <%if p%>
+              <div class="ribbon sale">
+                <div class="theribbon">SALE</div>
+                <div class="ribbon-background"></div>
+              </div>
+            <%end%>
+            <!-- /.ribbon -->
+
+            <% if c.created_at > 10.days.ago %>
+            <div class="ribbon new">
+              <div class="theribbon">NEW</div>
+              <div class="ribbon-background"></div>
+            </div>
+            <% end %>
+            <!-- /.ribbon -->
+        </div>
+        <!-- /.product -->
+    </div>
+  <%end%>
+  <div class="col-sm-12">
+    <div class="center">
+    <%= will_paginate @show_category, renderer: BootstrapPagination::Rails, inner_window: 1, outer_window: 1,previous_label: "«" , next_label: "»" %>
+    </div>
+  </div>
+</div>
+<!-- /.col-sm-12 -->

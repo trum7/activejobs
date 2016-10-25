@@ -1,0 +1,7 @@
+$( "#addedtocartbutton" ).html( "<i class='fa fa-shopping-cart'></i> Added to cart " );
+$( "#addedsuccess" ).append( "<div class='alert alert-success'><strong>Success!</strong> Added to cart.</div>" );
+$('#addedsuccess').animate({scrollTop: $('#addedsuccess').prop("scrollHeight")}, 500);
+$( "#number" ).html( "<%= session[:cart].count %>" );
+setTimeout(function() {
+    $( "#addedsuccess" ).html( "" );
+}, 5000);

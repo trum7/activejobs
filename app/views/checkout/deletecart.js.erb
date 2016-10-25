@@ -1,0 +1,2 @@
+$( "#contentcart" ).html( "<%= escape_javascript( render( "deletecart" ) ) %>" );
+$( "#number" ).html( "<%= session[:cart].count %>" );

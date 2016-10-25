@@ -1,0 +1,2 @@
+$( "#container-wishlist" ).html( "<%= escape_javascript( render( "showWL" ) ) %>" );
+$( "#numberW" ).html( "<%= session[:wishlist].count %>" );

@@ -20,4 +20,42 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  layouts:
+    header:
+      shop: "Shop Categories"
+      log_in: "Log in"
+      sign_up: "Sign up"
+      sign_out: "Sign out"
+      about_us: "About us"
+      survey: "Customer Survey"
+      reviews: "Customer reviews"
+      shipping: "Shipping"
+      return: "Return Policy"
+      privacy: "Privacy Policy"
+      terms: "Terms and Conditions"
+      team: "Developer Team"
+
+  home_page:
+    home:
+      why: "WHY OUR WAYUU TEAM?"
+      desc1: "Wayuu Mochila Bags are for every day, every outfit, and every personality! These handmade pieces of art will surely be the most unique bags you’ll come across in the world. The indigenous people that make them treat each piece as a canvas bringing out their passion and heart into each piece they create."
+      desc2: "Wayuu Mochila Bags are for every day, every outfit, and every personality! These handmade pieces of art will surely be the most unique bags you’ll come across in the world. The indigenous people that make them treat each piece as a canvas bringing out their passion and heart into each piece they create.Their skill and creativity will certainly impress men and women of all ages across many different cultures. Our goal is to share the beauty of the bags with the world as we bring awareness of the Wayuu people of Colombia. This will surely help to preserve their culture for many generations to come! In a short period of time, we have gone from an idea to actually putting something really fun and exciting together as we have been actively traveling and interacting with the Wayuu culture. It truly has been quite an exciting adventure our team has been on thus far. We have already employed people from different regions of Colombia and the United States. Striving for rapid growth while also creating an amazing company is something we work hard for each day. Bringing you the highest quality Wayuu Mochila Bags is something I know we can promise! We know with your support that our company will grow rapidly for many years to come. When you buy a bag you know you are helping many people along the way across multiple countries. A humanitarian way of producing a quality product for our customers is something our team has created. As of today, we are shipping worldwide and are reaching customers internationally. Be different, be unique, be Wayuu!"
+      see_more: "...See More"
+      supplier: "#1 Supplier of Wayuu Products in the WORLD!"
+      wayuu_blog1: "Check out our latest Posts about the Wayuu People and Us!"
+      getInTouch: "GET IN TOUCH"
+      to_help: "We are here to help! just send us an e-Mail."
+      name: "Firstname"
+      last_name: "Lastname"
+      email: "Email"
+      subject: "Subject"
+      message: "Message"
+      send: "Send message"
+
+
+
+
+
+
+
   hello: "Hello world"

@@ -1,0 +1,132 @@
+<div class="box">
+  <ul class="nav nav-pills nav-justified">
+      <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
+      </li>
+      <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Delivery address</a>
+      </li>
+      <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Billing address</a>
+      </li>
+      <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+      </li>
+
+  </ul>
+<div class="content">
+  <% if @addr2 != nil  and @addr2.length > 0 %>
+    <div class="col-md-12" align="center">
+    <div>
+      <div class="form-group">
+        <div class="col-sm-1"></div>
+        <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="(Autocomplete)">Use this</span></label>
+        <div class="col-sm-5">
+          <select class="form-control" data-live-search="true" id="field" name="field" style="font-size: 15px">
+            <%= @addr2.each do |t| %>
+              <option style="font-size: 15px" value="<%= t.id %>"  ><%= t.address %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <button id="yesdelivery"  class="btn btn-template-main">Yes<i class="fa fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div></div>
+  <% end %>
+  <br><br>
+  <div class="col-sm-6" id="cent" style="display: none;"></div>
+  <div class="loader col-sm-4" align="center" id="load" style="display: none;"></div>
+    <div class="col-md-12" align="center"></div>
+    <div id="ocultar">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="firstname">Firstname</label>
+                  <input type="text" class="form-control" id="firstname">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="lastname">Lastname</label>
+                  <input type="text" class="form-control" id="lastname">
+              </div>
+          </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="company">Company</label>
+                  <input type="text" class="form-control" id="company">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="street">Street</label>
+                  <input type="text" class="form-control" id="street">
+              </div>
+          </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+          <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="city">
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                  <label for="zip">ZIP</label>
+                  <input type="text" class="form-control" id="zip">
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" id="state">
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                <label for="phone">Country</label>
+                <select class="form-control" data-live-search="true" id="country" name="country" style="font-size: 15px">
+                  <%= @country.each do |t| %>
+                    <option style="font-size: 15px"><%= t.name %></option>
+                  <% end %>
+                </select>
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="phone">Telephone</label>
+                  <input type="text" class="form-control" id="phone">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" id="email">
+              </div>
+          </div>
+
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+
+  <div class="box-footer">
+      <div class="pull-left">
+          <a href="<%= checkout_index_path %>" class="btn btn-default"><i class="fa fa-chevron-left"></i>Order</a>
+      </div>
+      <div class="pull-right">
+          <button id="first-data" class="btn btn-template-main">Delivery address<i class="fa fa-chevron-right"></i></button>
+      </div>
+  </div>
+
+</div>
+<!-- /.box -->

@@ -1,0 +1,41 @@
+
+
+ <div id="page-wrapper" style="background-color: #FFFFFF; margin-top: 15px">
+
+<div class="container-fluid">
+
+    <div class="pull-right">
+
+      <button data-toggle="tooltip" title="Save" id="editcategory" class="btn btn-primary"><i class="fa fa-save"></i></button>
+
+      <!--<%= link_to '', change_category_index_path(:id => @cate.id ), method: :post, :class=>"btn btn-default fa fa-save",  remote: true %>-->
+
+      <a href="/admin/index" data-toggle="tooltip" title="Cancel" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>Category</h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i>Edit category</h3>
+      </div>
+      <div class="panel-body">
+        <form method="post" enctype="multipart/form-data" id="formcategory" class="form-horizontal">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= hidden_field_tag :id, @cate.id %>
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-data" data-toggle="tab">General</a></li>
+          </ul>
+          <div class="tab-content" style="margin-top: 15px">
+            <div class="tab-pane active" id="tab-data">
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-name">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" name="category_name" value="<%= @cate.name %>" id="name" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

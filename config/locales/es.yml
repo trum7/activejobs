@@ -1,0 +1,32 @@
+es:
+  layouts:
+    header:
+      shop: "Tienda"
+      log_in: "Entrar"
+      sign_up: "Registrarse"
+      sign_out: "Cerrar sesión"
+      about_us: "Sobre nosotros"
+      survey: "Encuesta"
+      reviews: "Reviews"
+      shipping: "Envios"
+      return: "Política de Retorno"
+      privacy: "Política de privacidad"
+      terms: "Terminos y condiciones"
+      team: "Equipo desarrollador"
+
+  home_page:
+    home:
+      why: "¿POR QUÉ NUESTRO EQUIPO WAYUU?"
+      desc1: "Las mochilas Wayuu van con cualquier estilo o pesonalidad.Estas obras de arte hechas a mano, son, sin duda alguna, únicas en el mundo.La comunidad indigena que las crea, trata cada una de estas piezas como un lienzo, poniendo su corazón  en cada una que crean."
+      desc2: "Las mochilas Wayuu van con cualquier estilo o pesonalidad.Estas obras de arte hechas a mano, son, sin duda alguna, únicas en el mundo.La comunidad indigena que las crea, trata cada una de estas piezas como un lienzo, poniendo su corazón  en cada una que crean.Las habilidades y creatividad de estas personas impresionará hombres de mujeres de todas las edades y  alrededor de mundo y de todas las culturas. Nuestra misión es compartir con el mundo la belleza de estas mochilas y así mismo darle el reconocimiento que se merece la comunidad Wayuu de Colombia. Esto ayudará a preservar su cultura por muchas generaciones. En un corto periodo de tiempo, hemos ido de una idea a crear algo emocionante y divertido, así como hemos estado viajando constantemente  e interactuando con la cultura Wayuu.  Ha sido una aventura emocionante para nuestro equipo y para nosostros hasta el momento. Ya hemos empleado personas de diferentes regiones de Colombia y de Estados Unidos.Nos  esforzamos todos los días por crear una gran empresa que este en constante crecimiento.Traerles  a ustedes Mochilas Wayuu de la más alta calidad es algo que podemos prometerles!. Cuando compra una mochila Wayuu, de paso, esta ayudando a muchas personas en muchos paises. Nuestro equipo ha creado una forma humanitaria de producir productos de altísima calidad para nuestros clientes. Hoy en día, enviamos nuestros productos alrededor del mundo llegando a nuestros clientes internacionalemente. Se diferente, se único, se Wayuu!"
+      see_more: "...Ver mas"
+      supplier: "Proveedor #1 en el mundo"
+      wayuu_blog1: "Revisa los más recientes Posts a cerca de la comunidad  Wayuu y nosotros!"
+      getInTouch: "CONTÁCTANOS"
+      to_help: "Estamos aquí para ayudar! Solo envianos un e-Mail."
+      name: "Nombre"
+      last_name: "Apellido"
+      email: "Email"
+      subject: "Asunto"
+      message: "Mensaje"
+      send: "Enviar mensaje"

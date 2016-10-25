@@ -1,0 +1,5 @@
+$( "#indexcambio" ).html( "<%= escape_javascript( render( "listcategory" ) ) %>" );
+$(document).on("click"," #tbCategory .pagination a", function(){
+    $.getScript(this.href);
+    return false;
+});

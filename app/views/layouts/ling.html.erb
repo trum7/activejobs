@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linguist</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'ling', media: 'all' %>
+  </head>
+  <body>
+    <div id="wrapper">
+    <%= render 'layouts/lingNav' %>
+    <%= yield %>
+    </div>
+  </body>
+</html>

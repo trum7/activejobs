@@ -1,0 +1,222 @@
+<header>
+	<!-- *** TOP *** -->
+	<div id="top">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2 col-sm-1 col-md-2 dropdown top-left">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<p><i class="fa fa-globe" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Language</span></p>
+					</a>
+					<ul class="dropdown-menu">
+						<li><%=link_to "English ",locale: "en"%></li>
+						<li><%=link_to "Español ",locale: "es"%></li>
+					</ul>
+				</div>
+				<p class="col-xs-6 col-sm-3 col-md-2 top-left">
+					<i class="fa fa-phone"></i> 1(855) 929-8855
+				</p>
+				<div class="hidden-xs col-sm-3 col-md-3 social">
+					<a href="https://www.facebook.com/WayuumBags" class="external facebook"><i class="fa fa-facebook"></i></a>
+					<a href="https://plus.google.com/+WayuumochilabagsStore" class="external gplus"><i class="fa fa-google-plus"></i></a>
+					<a href="https://www.instagram.com/wayuumbags" class="external instagram"><i class="fa fa-instagram"></i></a>
+					<a href="https://twitter.com/wayuumbags" class="external twitter"><i class="fa fa-twitter"></i></a>
+					<a href="http://wayuumbags.tumblr.com/" class="external tumblr hidden-sm"><i class="fa fa-tumblr"></i></a>
+					<a href="https://www.youtube.com/channel/UCL30I8UIIDth2U-KHJm2Fpw" class="external youtube hidden-sm"><i class="fa fa-youtube"></i></a>
+				</div>
+				<div class="col-xs-4 col-sm-5 col-md-5">
+					<div class="login">
+						<% if not current_user %>
+						<a href="#" data-toggle="modal" data-target="#myModal4"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase"><%=t('.log_in')%></span></a>
+						<a href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i><span class="hidden-xs text-uppercase"><%=t('.sign_up')%></span></a>
+						<% else %>
+						<%= link_to "Sign Out", destroy_user_session_path, class: "fa fa-sign-out", id: "hidden-xs", :method => 'delete' %>
+						<!--<i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase"><%=t('.sign_out')%></span></a>-->
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- *** TOP END *** -->
+	<!-- *** NAVBAR *** -->
+	<div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+		<div class="navbar navbar-default yamm" role="navigation" id="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand home" href="/home">
+						<%= image_tag("shop/logo.png", class: "hidden-xs hidden-sm logo-header") %>
+						<%= image_tag("shop/logo.png", class: "visible-xs visible-sm logo-small-header") %><span class="sr-only">Wayuu - go to homepage</span>
+					</a>
+					<div class="navbar-buttons">
+						<button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+							<span class="sr-only">Toggle navigation</span>
+							<i class="fa fa-align-justify"></i>
+						</button>
+					</div>
+					<div id="cart-container" class="hidden-sm hidden-md hidden-lg">
+						<a id="navbar-cart" href="<%= cart_checkout_index_path %>"><i class="fa fa-shopping-cart"></i><span class="num-count">0</span></a>
+					</div>
+				</div>
+				<div class="navbar-collapse collapse" id="navigation">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active">
+							<%= link_to("Home ", "/home")%>
+						</li>
+						<li class="dropdown use-yamm yamm-fw">
+							<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown"><%=t(".shop")%><b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>
+									<div class="yamm-content">
+										<div class="row">
+											<ul>
+												<% allCategories = Category.select("DISTINCT categories.id as id,categories.name as name").joins("INNER JOIN category_has_products ON category_has_products.category_id = categories.id  LEFT JOIN products on category_has_products.product_id = products.id WHERE products.status = '1'").order(name: :asc) %>
+												<li class="col-sm-4"><a href="/category/show">All Categories</a></li>
+												<li class="col-sm-4"><a href="#">Flash Sale</a></li>
+												<li class="col-sm-4"><a href="#">Gift Cards</a></li>
+												<%allCategories.each do |c|%>
+												<li><a href="<%= showall_category_product_index_path(c.id.to_s) %>"><%=c.name%></a></li>
+												<%end%>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0)">Blog </a>
+						</li>
+						<li class="dropdown">
+							<a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown"><%=t('.about_us')%><b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><%=t('.survey')%></a></li>
+								<li><a href="#"><%=t('.reviews')%></a></li>
+								<li><a href="#">FAQ's</a></li>
+								<li><a href="#"><%=t('.shipping')%></a></li>
+								<li><a href="#"><%=t('.return')%></a></li>
+								<li><a href="#"><%=t('.privacy')%></a></li>
+								<li><a href="#"><%=t('.terms')%></a></li>
+								<li><%= link_to(t('.team'), "team")%></li>
+							</ul>
+						</li>
+						<li class="hidden-xs">
+							<a href="#" id="navbar-cart" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i><span class="num-count"><div id="number"><%= session[:cart].count %></div></span></a>
+							<ul class="dropdown-menu dropdown-cart" id="refresh">
+								<li class="text-center"><button id="refresh" class="btn btn-template-main"><i class="fa fa-refresh fa-lg"></i>Update</button></li>
+								<br>
+								<div>
+									<table id="discount" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<td class="text-left">Name</td>
+												<td class="text-left">Price</td>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<li class="text-center"><button href="<%= cart_checkout_index_path %>" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Go to cart</button></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<%session[:wishlist]= {} if session[:wishlist] == nil%>
+							<a href="<%= wishlist_path	 %>" id="navbar-wishlist" ><i class="fa fa-heart"></i><span class="num-count"><div id="numberW"><%= session[:wishlist].count %></div></span></a>
+						</li>
+						<li>
+							<div class="social hidden-sm hidden-md hidden-lg">
+								<a href="https://www.facebook.com/WayuumBags" class="external facebook"><i class="fa fa-facebook"></i></a>
+								<a href="https://plus.google.com/+WayuumochilabagsStore" class="external gplus"><i class="fa fa-google-plus"></i></a>
+								<a href="https://www.instagram.com/wayuumbags" class="external instagram"><i class="fa fa-instagram"></i></a>
+								<a href="https://twitter.com/wayuumbags" class="external twitter"><i class="fa fa-twitter"></i></a>
+								<a href="http://wayuumbags.tumblr.com/" class="external tumblr"><i class="fa fa-tumblr"></i></a>
+								<a href="https://www.youtube.com/channel/UCL30I8UIIDth2U-KHJm2Fpw" class="external youtube"><i class="fa fa-youtube"></i></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="collapse clearfix" id="search">
+					<form class="navbar-form" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- *** NAVBAR END *** -->
+</header>
+<!-- *** LOGIN MODAL *** -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div align="center">
+				<div class="card card-container1" align="center">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="modal-title1" style="font-size:38px " align="center">
+							Log in
+						</div>
+					</div>
+				</br>
+				<% if controller_name != 'confirmations' or controller_name != 'passwords' or controller_name != 'unlocks' %>
+				<div align="center">
+					<div class="row" align="center">
+						<div class="cuadro3" align="center">
+							<!--<i class="fa fa-facebook-official" aria-hidden="true" align="center" style="color:white"></i>-->
+							<%= link_to "Facebook", omniauth_authorize_path(resource_name, :facebook), :class=>"button"%>
+						</div>
+						<div class="cuadro4"  align="center">
+							<!--<i class="fa fa-google-plus" style="color:white" ></i>-->
+							<%= link_to "Google", omniauth_authorize_path(resource_name, :google_oauth2), :class=>"button" %>
+						</div>
+					</div>
+				</div>
+				<% end %>
+				<div class="modal-body">
+					<!--<img id="profile_img2" class="profile-img2-card" src="<%= asset_path("profileimg.jpg") %>">-->
+					<div class="form-signin">
+						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+						<% f.label :email %>
+						<%= f.email_field :email, :id=>"inputEmail", :class=>"form-control", :placeholder=>"Email", autofocus: true, autocomplete: "off" %>
+
+						<% f.label :password %>
+						<%= f.password_field :password, :id=>"inputPassword", :class=>"form-control", :placeholder=>"Password", :align=>"center", autofocus: true, autocomplete: "off" %>
+
+						<div class="fonts">
+							<% if devise_mapping.rememberable? %>
+							<%= f.check_box :remember_me %>
+							<%= f.label :remember_me, :id=>"remember_me", autofocus: true, autocomplete: "off" %>
+							<% end %>
+						</div>
+						<div class="row">
+							<div align="center">
+								<div class="form-group">
+									<button class="btn btn-signin"></i> Log in</button>
+									<!--<button align="center" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>-->
+									<% f.submit "Log in" %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="text-center text-muted">Not registered yet? <a href="<%= new_user_registration_path %>"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+					<div class="fontlinks">
+						<%= render "devise/shared/links" %>
+					</div>
+					<% end %>
+				</div>
+					<!--<p class="text-center">
+						<button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
+					</p>
+					<div id="login-social">
+						<a id="login-facebook"><i class="fa fa-facebook"></i></a>
+						<a id="login-google"><i class="fa fa-google"></i></a>
+					</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- *** LOGIN MODAL END *** -->

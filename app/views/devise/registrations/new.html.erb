@@ -1,0 +1,49 @@
+</br>
+<div align="center">
+	<div class="card card-container2">
+		<h1 class="modal-title" align="center">Sign up</h1></br>
+		<img id="profile_img" class="profile-img-card" src="<%= asset_path("profileimg.jpg") %>">
+		<p id="profile_name" class="profile-name-card"></p>
+		<div class="form-signin">
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			<%= devise_error_messages! %>
+
+			
+
+			<div class="field">
+				<% f.label :name %><br />
+				<%= f.text_field :name, :id=>"inputName", :class=>"form-control", :placeholder=>"Name", autofocus: true, autocomplete: "off" %>
+			</div>
+
+			<div class="field">
+				<% f.label :email %><br />
+				<%= f.email_field :email, :id=>"inputEmail", :class=>"form-control", :placeholder=>"Email", autofocus: true, autocomplete: "off" %>
+			</div>
+
+		</br>
+		<div class="field">
+			<% f.label :password %>
+			<% if @minimum_password_length %>
+			<em>(<%= @minimum_password_length %> characters minimum)</em>
+			<% end %><br />
+			<%= f.password_field :password, :id=>"inputPassword", :class=>"form-control", :placeholder=>"Password", :align=>"center", autofocus: true, autocomplete: "off"  %>
+		</div>
+
+		<div class="field">
+			<% f.label :password_confirmation %><br />
+			<%= f.password_field :password_confirmation,:id=>"inputPassword", :class=>"form-control", :placeholder=>"Confirm Password", :align=>"center", autofocus: true, autocomplete: "off"  %>
+		</div>
+
+	</br>
+	<div align="center">
+		<div class="actions">
+			<button align="center" class="btn btn-lg btn-primary btn-block btn-signup" type="submit">Sign up</button>
+			<% f.submit "Sign up" %>
+		</div>
+	</div>
+	<% end %>
+
+	<%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

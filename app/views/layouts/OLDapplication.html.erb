@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Wayuu</title>
+	<%= csrf_meta_tags %>
+	<!--p class="notice"><% notice %></p-->
+	<!--p class="alert"><% alert %></p-->
+	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<%= javascript_include_tag 'application' %>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+	<%= render partial: 'layouts/header' %>
+	<%= yield %>
+	<%= render partial: 'layouts/footer' %>
+	<% render 'shared/facebook_sdk' %>
+</body>
+</html>

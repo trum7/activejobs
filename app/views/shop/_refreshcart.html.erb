@@ -1,0 +1,22 @@
+
+<li class="text-center"><button id="refresh" class="btn btn-template-main"><i class="fa fa-refresh fa-lg"></i>Update</button></button></li>
+<br>
+<div>
+	<table id="discount" class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<td class="text-left">Name</td>
+				<td class="text-left">Price</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @productcart.each do |a| %>
+			<tr>
+				<td><%= a.name %></td>
+				<td><%= a.price %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<li class="text-center"><button href="<%= cart_checkout_index_path %>" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Go to cart</button></li>

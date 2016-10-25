@@ -1,0 +1,11 @@
+$("addedtowishlist").click(function(){
+  this.removeClass("btn btn-template-main");
+  this.addClass("btn btn-template-primary");
+});
+$( "#addedsuccess" ).append( "<div class='alert alert-success'><strong>Success!</strong> Added to wishlist.</div>" );
+$('#addedsuccess').animate({scrollTop: $('#addedsuccess').prop("scrollHeight")}, 500);
+$( "#numberW" ).html( "<%= session[:wishlist].count %>" );
+
+setTimeout(function() {
+    $( "#addedsuccess" ).html( "" );
+}, 5000);
